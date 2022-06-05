@@ -1,0 +1,20 @@
+[package]
+name = "findmyfrens-tracker"
+authors = ["Travis Brown <travisrobertbrown@gmail.com>"]
+repository = "https://github.com/travisbrown/findmyfrens"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+clap = { version = "3", features = ["derive"] }
+chrono = "0.4"
+csv = "1"
+futures = "0.3"
+lazy_static = "1.4"
+log = "0.4"
+reqwest = "0.11"
+scraper = "0.13"
+simplelog = "0.12"
+thiserror = "1"
+url = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
