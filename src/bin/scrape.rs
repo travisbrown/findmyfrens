@@ -186,8 +186,8 @@ pub enum Error {
 #[clap(name = "scrape", version, author)]
 struct Opts {
     /// Level of verbosity
-    #[clap(short, long, parse(from_occurrences))]
-    verbose: i32,
+    #[clap(short, long, global = true, action = clap::ArgAction::Count)]
+    verbose: u8,
     /// The base URL
     #[clap(long)]
     base: Option<String>,
@@ -196,7 +196,7 @@ struct Opts {
     disable_snapshot: bool,
 }
 
-fn select_log_level_filter(verbosity: i32) -> LevelFilter {
+fn select_log_level_filter(verbosity: u8) -> LevelFilter {
     match verbosity {
         0 => LevelFilter::Off,
         1 => LevelFilter::Error,
@@ -207,7 +207,7 @@ fn select_log_level_filter(verbosity: i32) -> LevelFilter {
     }
 }
 
-fn init_logging(verbosity: i32) -> Result<(), log::SetLoggerError> {
+fn init_logging(verbosity: u8) -> Result<(), log::SetLoggerError> {
     simplelog::TermLogger::init(
         select_log_level_filter(verbosity),
         simplelog::Config::default(),
